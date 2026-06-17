@@ -3,7 +3,7 @@ import BlurText from '../components/BlurText'
 import './ProjectsCarousel.css'
 
 const CONFIG = {
-  SPEED: 0.4,
+  SPEED: 1.9,
   GAP: 30,
   ROTATE_Y: -20,
   ROTATE_X: -3,
@@ -37,26 +37,33 @@ export default function ProjectsCarousel() {
   useEffect(() => {
     const track = trackRef.current
     if (!track) return
+  
+    const isMobile = window.innerWidth <= 768
+    const speed = isMobile ? 1.5 : CONFIG.SPEED
+  
     const totalWidth = track.scrollWidth / 2
-
+  
     const animate = () => {
-      posRef.current += CONFIG.SPEED
+      posRef.current += speed
       if (posRef.current >= totalWidth) posRef.current = 0
       track.style.transform = `translateX(-${posRef.current}px)`
       rafRef.current = requestAnimationFrame(animate)
     }
-
+  
     rafRef.current = requestAnimationFrame(animate)
     return () => cancelAnimationFrame(rafRef.current)
   }, [])
-
-  const pause  = () => cancelAnimationFrame(rafRef.current)
+  
+  const pause = () => cancelAnimationFrame(rafRef.current)
+  
   const resume = () => {
     const track = trackRef.current
     if (!track) return
+    const isMobile = window.innerWidth <= 768
+    const speed = isMobile ? 1.5 : CONFIG.SPEED
     const totalWidth = track.scrollWidth / 2
     const animate = () => {
-      posRef.current += CONFIG.SPEED
+      posRef.current += speed
       if (posRef.current >= totalWidth) posRef.current = 0
       track.style.transform = `translateX(-${posRef.current}px)`
       rafRef.current = requestAnimationFrame(animate)
@@ -75,12 +82,17 @@ const onPointerDown = (e: React.PointerEvent) => {
   
   const onPointerMove = (e: React.PointerEvent) => {
     if (!isDraggingRef.current) return
-    const delta = dragStartXRef.current - e.clientX
+    const delta = Math.abs(dragStartXRef.current - e.clientX)
+    
+    // Si on a bougé de plus de 5px c'est un swipe — reset le hover
+    if (delta > 5) {
+      setHoveredIndex(null)
+    }
+  
     const track = trackRef.current
     if (!track) return
     const totalWidth = track.scrollWidth / 2
-    let next = dragStartPosRef.current + delta
-    // Wrap
+    let next = dragStartPosRef.current + (dragStartXRef.current - e.clientX)
     if (next < 0) next += totalWidth
     if (next >= totalWidth) next -= totalWidth
     posRef.current = next
@@ -90,6 +102,7 @@ const onPointerDown = (e: React.PointerEvent) => {
   const onPointerUp = () => {
     if (!isDraggingRef.current) return
     isDraggingRef.current = false
+    setHoveredIndex(null)   // ← reset blur au release
     resume()
   }
 

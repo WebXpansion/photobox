@@ -152,8 +152,19 @@
       gap: var(--space-md);
     }
 
+    .projects__carousel {
+        padding-bottom: clamp(2rem, 4vh, 3rem);
+      }
+    
+      .projects__card {
+        width: 300px!important;
+        aspect-ratio: unset;
+        height: 500px;
+        transform: rotateY(-12deg) rotateX(3deg);
+      }
+
     .projects__header{
-        margin-bottom: 64px!important;
+        margin-bottom: 64px;
     }
 
     .projects{
