@@ -61,6 +61,10 @@
     .features__row {
       flex-direction: column;
     }
+
+    .features__heading{
+        padding-bottom: 30px!important;
+    }
   
     .features__col--narrow,
     .features__col--wide {

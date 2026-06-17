@@ -50,7 +50,7 @@ export default function Navbar() {
           <img src="/logo-4.png" alt="JMA" height="28" />
         </a>
 
-        <a href="#contact" className="navbar__cta">Contact us</a>
+        <a href="mailto:contact@thenewface.io" className="navbar__cta">Contact us</a>
       </div>
 
       <nav

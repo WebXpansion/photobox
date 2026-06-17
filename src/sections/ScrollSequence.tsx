@@ -97,25 +97,14 @@ export default function ScrollSequence() {
 
         <div className={`scroll-seq__bottom ${textVisible ? 'scroll-seq__bottom--visible' : ''}`}>
             <div className="scroll-seq__bottom-left">
-                <h3 className="hero__h1">
-            <BlurText
-                as="span"
-                className="hero__h1-line"
-                wordDelay={0.07}
-                threshold={0.05}
-            >
-                Vision complète 
-       
-            </BlurText>
 
-            <BlurText
-                as="span"
-                className="hero__h1-line"
-                wordDelay={0.07}
-                threshold={0.05}
-            >
-                        à 360°
-            </BlurText>
+            <h3 className="scroll-seq2__sub-title">
+              <BlurText as="span" className="scroll-seq2__sub-title-line" wordDelay={0.07} triggered={textVisible}>
+              Vision complète 
+              </BlurText>
+              <BlurText as="span" className="scroll-seq2__sub-title-line" wordDelay={0.07} triggered={textVisible}>
+              à 360°
+              </BlurText>
             </h3>
             </div>
             <div className="scroll-seq__bottom-right">

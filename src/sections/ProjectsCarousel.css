@@ -151,6 +151,14 @@
       flex-direction: column;
       gap: var(--space-md);
     }
+
+    .projects__header{
+        margin-bottom: 64px!important;
+    }
+
+    .projects{
+        padding-top: 64px;
+    }
   
     .projects__card {
       width: clamp(150px, 40vw, 220px);

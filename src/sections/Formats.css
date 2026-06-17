@@ -229,6 +229,10 @@
     .formats__stack {
       padding-bottom: 20vh;
     }
+
+    .format-card__top{
+        padding-bottom: 26px;
+    }
   
     .format-card {
       grid-template-columns: 1fr;
@@ -254,5 +258,6 @@
       height: 50%;
       top: auto;
       bottom: 0;
+      background-image: none!important;
     }
   }

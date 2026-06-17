@@ -20,6 +20,18 @@
     display: block;
     min-height: 0;
   }
+
+.scroll-seq__sticky::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  background: linear-gradient(to bottom, transparent 0%, #000 100%);
+  pointer-events: none;
+  z-index: 1;
+}
   
   .scroll-seq__bottom {
     position: absolute;
@@ -35,6 +47,7 @@
     pointer-events: none;
     padding: clamp(1rem, 2vh, 1.5rem) clamp(1.5rem, 4vw, 4rem);
     flex-shrink: 0;
+    z-index: 2;
   }
   
   .scroll-seq__bottom--visible {
@@ -81,5 +94,8 @@
     .scroll-seq__bottom-right {
       text-align: left;
       flex: 1;
+    }
+    .scroll-seq__desc{
+      text-align: left;
     }
   }
