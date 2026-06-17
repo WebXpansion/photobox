@@ -3,7 +3,7 @@ import BlurText from '../components/BlurText'
 import './ProjectsCarousel.css'
 
 const CONFIG = {
-  SPEED: 1.9,
+  SPEED: 1,
   GAP: 30,
   ROTATE_Y: -20,
   ROTATE_X: -3,
