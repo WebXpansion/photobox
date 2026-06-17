@@ -1,0 +1,42 @@
+/* ============================================
+   BLUR TEXT ANIMATION
+   ============================================ */
+.blur-text {
+  /* Layout: wrap words naturally */
+  display: block;
+}
+
+.blur-text__word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(8px);
+  transition:
+    opacity 0.5s ease-in-out,
+    transform 0.5s ease-in-out,
+    filter 0.5s ease-in-out;
+  margin-right: 0.25em;
+  /* Prevent orphan last word spacing */
+  white-space: nowrap;
+}
+
+/* Triggered state */
+.blur-text--revealed .blur-text__word {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Reduced motion override */
+@media (prefers-reduced-motion: reduce) {
+  .blur-text__word {
+    opacity: 0;
+    transform: none;
+    filter: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .blur-text--revealed .blur-text__word {
+    opacity: 1;
+  }
+}

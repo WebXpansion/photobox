@@ -1,0 +1,196 @@
+/* ============================================
+   FEATURES SECTION
+   ============================================ */
+   .features {
+    width: 100%;
+    background-color: var(--color-bg);
+    padding-block: clamp(3rem, 8vw, 7rem);
+  }
+  
+  .features__inner {
+    max-width: 1600px;
+    margin-inline: auto;
+    padding:20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  /* ---- Heading ---- */
+  .features__heading {
+    max-width: 800px;
+    padding-bottom: 70px;
+  }
+  
+  .features__h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-white);
+
+  }
+  
+  .features__h2 .blur-text__word {
+    margin-right: 0.2em;
+  }
+  
+/* ---- Rows ---- */
+.features__row {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .features__col {
+    flex-shrink: 0;
+  }
+  
+  .features__col--narrow {
+    flex: 1;
+  }
+  
+  .features__col--wide {
+    flex: 1.35;
+  }
+  
+  /* ---- Supprime l'ancienne .features__grid et les nth-child ---- */
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .features__row {
+      flex-direction: column;
+    }
+  
+    .features__col--narrow,
+    .features__col--wide {
+      flex: 1;
+    }
+  }
+  
+  /* ---- Card base ---- */
+  .feat-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #111;
+    min-height: 500px;
+    cursor: pointer;
+  }
+  
+  /* Card wide (bottom-right) */
+  .feat-card--wide {
+    /* stays in the right column, full height of bottom row */
+  }
+  
+  /* ---- Media ---- */
+  .feat-card__media {
+    position: absolute;
+    inset: 0;
+  }
+  
+  .feat-card__img,
+  .feat-card__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  
+  /* Dark overlay — stronger at top for text legibility */
+  .feat-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.1) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+  
+  /* ---- Content ---- */
+  .feat-card__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: clamp(1.2rem, 2.5vw, 1.8rem);
+  }
+
+  .feature-card__title {
+    white-space: pre-line!important;
+  }
+  
+  .feat-card__text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 60%;
+  }
+  
+  .feat-card__title {
+    font-family: var(--font-body);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--color-white);
+    line-height: 1.3;
+  }
+  
+  .feat-card__desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.5;
+  }
+  
+  /* ---- Plus button ---- */
+  .feat-card__plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+    flex-shrink: 0;
+  }
+  
+  .feat-card__plus:hover {
+    background-color: rgba(255, 255, 255, 0.22);
+    transform: scale(1.05);
+  }
+  
+  .feat-card__plus svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.9;
+  }
+  
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  @media (max-width: 768px) {
+    .features__grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .feat-card {
+      min-height: 320px;
+    }
+  
+    .feat-card__text {
+      max-width: 80%;
+    }
+  }

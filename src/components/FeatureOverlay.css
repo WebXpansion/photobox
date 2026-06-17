@@ -1,0 +1,260 @@
+/* ============================================
+   FEATURE OVERLAY
+   ============================================ */
+   .feat-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 3rem);
+    animation: overlay-in 0.8s ease forwards;
+    /* Isolation pour que backdrop-filter fonctionne */
+    isolation: isolate;
+  }
+  
+  .feat-overlay__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    /* Fallback pour navigateurs sans backdrop-filter (Brave, Firefox ancien) */
+    border: none;
+    cursor: default;
+    width: 100%;
+    height: 100%;
+  }
+
+  .feat-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 3rem);
+    animation: overlay-in 1s ease forwards;
+    /* Blur directement sur le container comme la navbar */
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .feat-overlay__image,
+.feat-overlay__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+  
+  .feat-overlay__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    border: none;
+    cursor: default;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+  
+  /* Backdrop filter si supporté */
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .feat-overlay__backdrop {
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+  
+  @keyframes overlay-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes panel-in {
+    from {
+      transform: scale(0.97) translateY(24px);
+      opacity: 0;
+      filter: blur(8px);
+    }
+    to {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+  
+  .feat-overlay--closing {
+    animation: overlay-out 0.55s ease forwards;
+  }
+  
+  .feat-overlay--closing .feat-overlay__panel {
+    animation: panel-out 0.5s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+  }
+  
+  @keyframes overlay-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes panel-out {
+    from {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      filter: blur(0);
+    }
+    to {
+      transform: scale(0.97) translateY(24px);
+      opacity: 0;
+      filter: blur(8px);
+    }
+  }
+
+  
+  /* Panel */
+  .feat-overlay__panel {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+    height: clamp(400px, 40vh, 700px);
+    border-radius: 14px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    animation: panel-in 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  /* ---- Left ---- */
+  .feat-overlay__left {
+    background-color: #0a0a0a;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .feat-overlay__top {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .feat-overlay__counter {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.08em;
+  }
+  
+  .feat-overlay__title {
+    font-family: var(--font-body);
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    font-weight: 400;
+    color: var(--color-white);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  
+  .feat-overlay__desc {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.7;
+    max-width: 100%;
+  }
+  
+  /* Navigation arrows */
+  .feat-overlay__nav {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .feat-overlay__arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+  
+  .feat-overlay__arrow:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  
+  /* ---- Right ---- */
+  .feat-overlay__right {
+    position: relative;
+    background-color: #b0b8c1;
+    overflow: hidden;
+  }
+  
+  .feat-overlay__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  
+  /* Close button */
+  .feat-overlay__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .feat-overlay__close:hover {
+    background: #fff;
+  }
+  
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  @media (max-width: 768px) {
+    .feat-overlay__panel {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 85vh;
+    }
+  
+    .feat-overlay__right {
+      order: -1;
+    }
+  
+    .feat-overlay__close {
+      top: 0.75rem;
+      right: 0.75rem;
+    }
+  }

@@ -1,0 +1,147 @@
+/* ============================================
+   LOGO MARQUEE SECTION
+   ============================================ */
+   .marquee-section {
+    width: 100%;
+    background-color: #000;
+    padding-top: clamp(1.5rem, 3vw, 2.5rem);
+    padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    overflow: hidden;
+  }
+  
+  /* ---- Label "Trusted by" ---- */
+  .marquee-section__label {
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: clamp(1rem, 2vw, 1.75rem);
+  }
+  
+  /* ---- Track wrapper ---- */
+  .marquee-section__track-wrap {
+    position: relative;
+  max-width: 1600px;       
+  margin-inline: auto;
+  padding-block: clamp(1rem, 2vw, 1.5rem);
+  overflow: hidden;
+  }
+  
+  /* ---- Corner brackets ---- */
+  .marquee-section__bracket {
+    position: absolute;
+    width: 12px;              /* ← était 14px */
+    height: 12px;             /* ← était 14px */
+    pointer-events: none;
+  }
+  
+  .marquee-section__bracket--tl {
+    top: 0; left: 0;
+    border-top:  1px solid rgba(255,255,255,0.2);
+    border-left: 1px solid rgba(255,255,255,0.2);
+    z-index: 3;
+  }
+  .marquee-section__bracket--bl {
+    bottom: 0; left: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    border-left:   1px solid rgba(255,255,255,0.2);
+    z-index: 3;
+  }
+  .marquee-section__bracket--tr {
+    top: 0; right: 0;
+    border-top:   1px solid rgba(255,255,255,0.2);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    z-index: 3;
+  }
+  .marquee-section__bracket--br {
+    bottom: 0; right: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    border-right:  1px solid rgba(255,255,255,0.2);
+    z-index: 3;
+  }
+  
+  /* ---- Fade gradients ---- */
+  .marquee-section__fade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: clamp(80px, 12vw, 200px);
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .marquee-section__fade--left {
+    left: 0;
+    background: linear-gradient(to right, #000000 0%, transparent 100%);
+  }
+  
+  .marquee-section__fade--right {
+    right: 0;
+    background: linear-gradient(to left, #000000 0%, transparent 100%);
+  }
+  
+  /* ---- Scrolling track ---- */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 28s linear infinite;
+  }
+  
+  /* Pause on hover/focus — respects user preference */
+  .marquee-section:hover .marquee-track,
+  .marquee-section:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+  
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }    /* -50% because track is duplicated */
+  }
+  
+  /* ---- Logo list ---- */
+  .marquee-track__list {
+    display: flex;
+    align-items: center;
+    gap: clamp(3rem, 6vw, 7rem);
+    padding-inline: clamp(1.5rem, 3vw, 3.5rem);
+  }
+  
+  .marquee-track__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    opacity: 0.35;
+    transition: opacity 0.3s ease;
+    filter: grayscale(1);
+  }
+  
+  .marquee-track__item:hover {
+    opacity: 0.65;
+  }
+  
+  /* Placeholder text — retire quand tu mets de vrais SVG */
+  .logo-placeholder {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.7);
+    white-space: nowrap;
+  }
+  
+  /* Si tes SVG sont importés, cible-les comme ça : */
+  .marquee-track__item svg {
+    height: 28px;
+    width: auto;
+    fill: rgba(255, 255, 255, 0.6);
+  }
