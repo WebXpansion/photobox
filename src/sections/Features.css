@@ -124,7 +124,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    padding: clamp(1.2rem, 2.5vw, 1.8rem);
+    padding: clamp(1.3rem, 2.5vw, 1.8rem);
   }
 
   .feature-card__title {
@@ -196,5 +196,6 @@
   
     .feat-card__text {
       max-width: 80%;
+      font-size: 18px!important;
     }
   }

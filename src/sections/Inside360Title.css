@@ -75,3 +75,14 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  @media (max-width: 768px) {
+
+    .inside-title__inner{
+      padding-top: 32px;
+    }
+    .inside-title__h2 {
+      padding-bottom: 0!important;
+    }
+    
+  }

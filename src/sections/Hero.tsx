@@ -32,7 +32,7 @@ export default function Hero() {
           <div className="hero__badge" aria-label="We automate +100 camera">
             <span className="hero__badge-bracket hero__badge-bracket--tl" aria-hidden="true" />
             <span className="hero__badge-bracket hero__badge-bracket--br" aria-hidden="true" />
-            WE AUTOMATE +100 CAMERA
+            NEXT-GEN CAPTURE STUDIO
           </div>
 
           <h1 className="hero__h1">

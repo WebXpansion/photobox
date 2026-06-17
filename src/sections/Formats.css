@@ -228,7 +228,6 @@
      @media (max-width: 768px) {
         .formats__stack {
             padding-top: 64px;
-            padding-bottom: 64px;
           }
         
           .formats__heading {
